@@ -1,0 +1,18 @@
+
+.o_nrc_format div[name="nrc_state_id"], .o_nrc_format div[name="nrc_type_id"] {
+    max-width: 45%!important;
+}
+
+.oe_custom_group .o_cell {
+    width: 80%!important;
+}
+
+.announcement {
+    margin: 10px auto;
+    width: 70%;
+
+    .announcement-title {
+        text-align: center;
+        padding: 10px;
+    }
+}

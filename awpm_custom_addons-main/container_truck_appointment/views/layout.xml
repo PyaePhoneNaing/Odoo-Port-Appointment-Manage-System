@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="layout" name="Container Truck Appointment Layout">
+            <html>
+                <head>
+                    <meta charset="utf-8"/>
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+                    <link rel="shortcut icon" href="/container_truck_appointment/static/img/favicon.ico" type="image/x-icon"/>
+                    <script id="web.layout.odooscript" type="text/javascript">
+                        var odoo = {
+                        csrf_token: "<t t-nocache="The csrf token must always be up to date."
+                                        t-out="request.csrf_token(None)" />",
+                        debug: "<t t-out="debug"/>",
+                        };
+                    </script>
+                    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                    <xpath expr="//head/meta[last()]" position="after">
+                        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                    </xpath>
+                    <xpath expr="//head/link[last()]" position="after">
+                        <link rel="preload"
+                              href="/web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font"
+                              crossorigin=""/>
+                        <t t-call-assets="web.assets_frontend" t-js="false"/>
+                    </xpath>
+                    <xpath expr="//head/script[@id='web.layout.odooscript']" position="after">
+                        <script t-nocache="Session information should always be up to date." type="text/javascript">
+                            odoo.__session_info__ =<t
+                                t-out="json.dumps(request.env['ir.http'].get_frontend_session_info())"/>;
+                            if (!/(^|;\s)tz=/.test(document.cookie)) {
+                            const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                            document.cookie = `tz=${userTZ}; path=/`;
+                            }
+                        </script>
+                        <t t-call-assets="web.assets_frontend_minimal" t-css="false" defer_load="True"/>
+                        <t t-call="web.conditional_assets_tests"/>
+                        <t t-call-assets="web.assets_frontend_lazy" t-css="false" lazy_load="True"/>
+                    </xpath>
+                </head>
+                <body>
+                     <div class="container-fluid">
+                        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                            <div class="container-fluid">
+                                <a class="navbar-brand" href="/web">
+                                    <img src="/container_truck_appointment/static/img/awpm_logo.png"
+                                         alt="Asia Work Port Management Co., Ltd." width="30" height="24"/>
+                                </a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                        aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" role="button"
+                                               data-bs-toggle="dropdown"
+                                               aria-expanded="false">
+                                                Container Truck Appointment
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Export</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" role="button"
+                                               data-bs-toggle="dropdown"
+                                               aria-expanded="false">
+                                                Agent
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Login</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="/web/agent_registration">Register</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                        <main>
+                            <t t-out="0"/>
+                        </main>
+                     </div>
+                </body>
+            </html>
+        </template>
+    </data>
+</odoo>

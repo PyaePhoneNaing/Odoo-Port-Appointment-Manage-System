@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="owl.ContainerDashBoard" owl="1">
+        <div class="vh-100 overflow-auto bg-muted">
+            <div class="row m-3">
+                <div class="col-lg-7">
+                    <div class="row">
+                        <div class="col m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h1 class="text-primary fw-bold">Container Truck Appointments Dashboard</h1>
+                                    <div>
+                                        <select class="form-select" t-model="state.period" t-on-change="onChangePeriod">
+                                            <option value="today">Today</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-evenly">
+                        <span><h2 style="color: red;">Export Appointments</h2></span>
+                        <KpiCard name="'Morning Appointments'" period="state.period"
+                                 value="state.export_morning_appointment.value"
+                                 percentage="state.export_morning_appointment.percentage"/>
+                        <KpiCard name="'Evening Appointments'" period="state.period"
+                                 value="state.export_evening_appointment.value"
+                                 percentage="state.export_evening_appointment.percentage"/>
+                        <KpiCard name="'Total Appointments'" period="state.period"
+                                 value="state.export_total_appointment.value"
+                                 percentage="state.export_total_appointment.percentage"/>
+                    </div>
+                    <br></br>
+                    <div class="row d-flex justify-content-evenly">
+                        <span><h2 style="color: blue;">Import Appointments</h2></span>
+                        <KpiCard name="'Morning Appointments'" period="state.period"
+                                 value="state.import_morning_appointment.value"
+                                 percentage="state.import_morning_appointment.percentage"/>
+                        <KpiCard name="'Evening Appointments'" period="state.period"
+                                 value="state.import_evening_appointment.value"
+                                 percentage="state.import_evening_appointment.percentage"/>
+                        <KpiCard name="'Total Appointments'" period="state.period"
+                                 value="state.import_total_appointment.value"
+                                 percentage="state.import_total_appointment.percentage"/>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                        <div class="row">
+                            <div class="col m-0 p-0">
+                                <div class="shadow-sm border m-2 p-4 bg-white">
+                                     <div class="d-flex align-items-center justify-content-between">
+                                         <h3 class="text-primary fw-bold">Export Bar Chart</h3>
+                                    </div>
+                                    <ChartRenderer type="'bar'" title="'Export Appointments'"
+                                                   t-if="state.exportChartData" data="state.exportChartData"/>
+                                </div>
+                             </div>
+                        </div>
+                    <div class="row">
+                            <div class="col m-0 p-0">
+                                <div class="shadow-sm border m-2 p-4 bg-white">
+                                      <div class="d-flex align-items-center justify-content-between">
+                                            <h3 class="text-primary fw-bold">Import Bar Chart</h3>
+                                      </div>
+                                    <ChartRenderer type="'bar'" title="'Import Appointments'"
+                                                   t-if="state.importChartData" data="state.importChartData"/>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

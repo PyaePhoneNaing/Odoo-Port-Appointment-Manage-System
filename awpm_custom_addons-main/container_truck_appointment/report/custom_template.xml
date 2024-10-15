@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="report_paperformat_custom" model="report.paperformat">
+            <field name="name">Custom Paper Format</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">200</field>
+            <field name="page_width">80</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="action_import_report" model="ir.actions.report">
+            <field name="name">Slip</field>
+            <field name="model">container.truck.appointment.import</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">container_truck_appointment.import_report_template</field>
+            <field name="report_file">container_truck_appointment.import_report_template</field>
+            <field name="print_report_name">'Import- ' + object.name</field>
+            <field name="binding_model_id" ref="model_container_truck_appointment_import"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="report_paperformat_custom"/>
+            <field name="groups_id" eval="[(4, ref('container_truck_appointment.group_allow_export_print'))]"/>
+        </record>
+
+        <record id="action_export_report" model="ir.actions.report">
+            <field name="name">Slip</field>
+            <field name="model">container.truck.appointment.export</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">container_truck_appointment.export_report_template</field>
+            <field name="report_file">container_truck_appointment.export_report_template</field>
+            <field name="print_report_name">'Export- ' + object.name</field>
+            <field name="binding_model_id" ref="model_container_truck_appointment_export"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="report_paperformat_custom"/>
+            <field name="groups_id" eval="[(4, ref('container_truck_appointment.group_allow_export_print'))]"/>
+        </record>
+
+        <record id="action_container_truck_appointment_export_report" model="ir.actions.report">
+            <field name="name">Line Slip</field>
+            <field name="model">container.truck.appointment.export.line</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">container_truck_appointment.container_truck_appointment_export_report</field>
+            <field name="report_file">container_truck_appointment.container_truck_appointment_export_report</field>
+            <field name="binding_model_id" ref="model_container_truck_appointment_export_line"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="report_paperformat_custom"/>
+            <field name="print_report_name">object.container_id.name or ''</field>
+        </record>
+
+
+        <record id="action_container_truck_appointment_import_report" model="ir.actions.report">
+            <field name="name">Line Slip</field>
+            <field name="model">container.truck.appointment.import.line</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">container_truck_appointment.container_truck_appointment_import_report</field>
+            <field name="report_file">container_truck_appointment.container_truck_appointment_import_report</field>
+            <field name="binding_model_id" ref="model_container_truck_appointment_import_line"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="report_paperformat_custom"/>
+            <field name="print_report_name">object.container_id.name or ''</field>
+        </record>
+    </data>
+</odoo>

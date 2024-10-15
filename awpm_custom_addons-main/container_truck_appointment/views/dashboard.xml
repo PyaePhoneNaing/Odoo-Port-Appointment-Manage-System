@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="action_container_dashboard" model="ir.actions.client">
+            <field name="name">Container Dashboard</field>
+            <field name="tag">owl.container_dashboard</field>
+        </record>
+    </data>
+</odoo>

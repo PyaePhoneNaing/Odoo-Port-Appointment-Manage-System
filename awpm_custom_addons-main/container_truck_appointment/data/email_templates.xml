@@ -1,0 +1,163 @@
+<odoo>
+    <data>
+
+        <record id="email_template_agent_approved" model="mail.template">
+            <field name="name">Agent Approval</field>
+            <field name="model_id" ref="container_truck_appointment.model_container_truck_appointment_agent"/>
+            <field name="subject">Agent Account Approved</field>
+            <field name="email_to">"{{ object.email }}"</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <div style="margin: 0px; padding: 0px;">
+                        <div style="text-align: center; padding: 20px; font-size:40px;">
+                            <img src="/container_truck_appointment/static/description/asiaworld.png" alt="Company Logo"
+                                 style="width: 100px;"/>
+                        </div>
+                        <div style="padding: 20px; background-color: #fff;">
+                            <h1 style="color: #333; text-align:center;">Agent Account Approved</h1>
+                            <br/>
+                            <p>Dear
+                                <strong>
+                                    <t t-out="object.name"/>
+                                </strong>
+                                ,
+                            </p>
+                            <p>We are pleased to inform you that your account has been approved. You can now log in to
+                                our system and access all the features available to you.
+                            </p>
+                            <p>Please use the following credentials to log in:</p>
+                            <ul>
+                                <li>
+                                    <strong>Email:</strong>
+                                    <t t-out="object.email"/>
+                                </li>
+                                <li>
+                                    <strong>Password:</strong>
+                                    The password you provided during registration
+                                </li>
+                            </ul>
+                            <p>If you have any questions or need further assistance, feel free to contact our support
+                                team.
+                            </p>
+                            <p>Best regards,</p>
+                            <p>
+                                <strong>Asia World Port Team</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </field>
+<!--            <field name="mail_server_id" eval="3"/>-->
+        </record>
+
+
+        <record id="email_template_agent_rejected" model="mail.template">
+            <field name="name">Agent Rejected</field>
+            <field name="model_id" ref="container_truck_appointment.model_container_truck_appointment_agent"/>
+            <field name="subject">Agent Account Rejected</field>
+            <field name="email_to">"{{ object.email }}"</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <div style="margin: 0px; padding: 0px;">
+                        <div style="text-align: center; padding: 20px; font-size:40px;">
+                            <img src="/container_truck_appointment/static/description/asiaworld.png" alt="Company Logo"
+                                 style="width: 100px;"/>
+                        </div>
+                        <div style="padding: 20px; background-color: #fff;">
+                            <h1 style="color: #333; text-align:center;">Agent Account Rejected</h1>
+                            <br/>
+                            <p>Dear
+                                <strong>
+                                    <t t-out="object.name"/>
+                                </strong>
+                                ,
+                            </p>
+                            <p>We regret to inform you that your registration has been rejected.</p>
+                            <p>If you have any questions or need further assistance, feel free to contact our support
+                                team.
+                            </p>
+                            <p>Best regards,</p>
+                            <p>
+                                <strong>Asia World Port Team</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </field>
+<!--            <field name="mail_server_id" eval="3"/>-->
+        </record>
+
+        <record id="email_template_export_approved" model="mail.template">
+            <field name="name">Export Approved</field>
+            <field name="model_id" ref="container_truck_appointment.model_container_truck_appointment_export"/>
+            <field name="subject">Export Approved</field>
+            <field name="email_to">"{{ object.agent_email }}"</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <div style="margin: 0px; padding: 0px;">
+                        <div style="text-align: center; padding: 20px; font-size:40px;">
+                            <img src="/container_truck_appointment/static/description/asiaworld.png" alt="Company Logo"
+                                 style="width: 100px;"/>
+                        </div>
+                        <div style="padding: 20px; background-color: #fff;">
+                            <h1 style="color: #333; text-align:center;">Export Form Approved</h1>
+                            <br/>
+                            <p>Dear
+                                <strong>
+                                    <t t-out="object.agent_id.name"/>
+                                </strong>
+                                ,
+                            </p>
+                            <p>We are pleased to inform you that your export form has been approved.</p>
+                            <p>If you have any questions or need further assistance, feel free to contact our support
+                                team.
+                            </p>
+                            <p>Best regards,</p>
+                            <p>
+                                <strong>Asia World Port Team</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </field>
+<!--            <field name="mail_server_id" eval="3"/>-->
+        </record>
+
+        <record id="email_template_import_approved" model="mail.template">
+            <field name="name">Import Improved</field>
+            <field name="model_id" ref="container_truck_appointment.model_container_truck_appointment_import"/>
+            <field name="subject">Import Approved</field>
+            <field name="email_to">"{{ object.agent_email }}"</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <div style="margin: 0px; padding: 0px;">
+                        <div style="text-align: center; padding: 20px; font-size:40px;">
+                            <img src="/container_truck_appointment/static/description/asiaworld.png" alt="Company Logo"
+                                 style="width: 100px;"/>
+                        </div>
+                        <div style="padding: 20px; background-color: #fff;">
+                            <h1 style="color: #333; text-align:center;">Import Form Approved</h1>
+                            <br/>
+                            <p>Dear
+                                <strong>
+                                    <t t-out="object.agent_id.name"/>
+                                </strong>
+                                ,
+                            </p>
+                            <p>We are pleased to inform you that your import form has been approved.</p>
+                            <p>If you have any questions or need further assistance, feel free to contact our support
+                                team.
+                            </p>
+                            <p>Best regards,</p>
+                            <p>
+                                <strong>Asia World Port Team</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </field>
+<!--            <field name="mail_server_id" eval="3"/>-->
+        </record>
+
+    </data>
+</odoo>

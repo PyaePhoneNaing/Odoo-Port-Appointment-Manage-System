@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Define view for 'res.country.ward' model -->
+        <record id="tree_view_res_country_ward" model="ir.ui.view">
+            <field name="name">Ward</field>  <!-- View name -->
+            <field name="model">res.country.ward</field>  <!-- Model associated with the view -->
+            <field name="arch" type="xml">
+                <!-- Tree view definition -->
+                <tree editable="top">
+                    <field name="name"/>  <!-- Display name field -->
+                    <field name="burmese_name"/>
+                    <field name="township_id"/>  <!-- Display English name field -->
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Define view for 'res.country.township' model -->
+        <record id="tree_view_res_country_township" model="ir.ui.view">
+            <field name="name">Township</field>  <!-- View name -->
+            <field name="model">res.country.township</field>  <!-- Model associated with the view -->
+            <field name="arch" type="xml">
+                <!-- Tree view definition -->
+                <tree editable="top">
+                    <field name="name"/>  <!-- Display name field -->
+                    <field name="burmese_name"/>
+                    <field name="state_id"/>  <!-- Display English name field -->
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+        <record id="township_search_view" model="ir.ui.view">
+            <field name="name">res.country.township.search</field>
+            <field name="model">res.country.township</field>
+            <field name="arch" type="xml">
+                <search string="township">
+                    <field name="name"/>
+                    <field name="burmese_name"/>
+                    <field name="state_id"/>
+                </search>
+            </field>
+        </record>
+        <!-- Define view for 'res.country.state' model -->
+        <record id="tree_view_res_country_state" model="ir.ui.view">
+            <field name="name">State</field>  <!-- View name -->
+            <field name="model">res.country.state</field>  <!-- Model associated with the view -->
+            <field name="arch" type="xml">
+                <!-- Tree view definition -->
+                <tree editable="top">
+                    <field name="name"/>  <!-- Display name field -->
+                    <field name="burmese_name"/>
+                    <field name="code"/>
+                    <field name="country_id"/>  <!-- Display English name field -->
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+        <record id="state_search_view" model="ir.ui.view">
+            <field name="name">res.country.township.search</field>
+            <field name="model">res.country.township</field>
+            <field name="arch" type="xml">
+                <search string="state">
+                    <field name="name"/>
+                    <field name="burmese_name"/>
+                    <field name="country_id"/>
+                </search>
+            </field>
+        </record>
+         <!-- Define view for 'res.country' model -->
+        <record id="tree_view_res_country" model="ir.ui.view">
+            <field name="name">Country</field>  <!-- View name -->
+            <field name="model">res.country</field>  <!-- Model associated with the view -->
+            <field name="arch" type="xml">
+                <!-- Tree view definition -->
+                <tree editable="top">
+                    <field name="name"/>  <!-- Display name field -->
+                    <field name="burmese_name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Define action for 'res.country.township' model -->
+        <record id="action_res_country_ward" model="ir.actions.act_window">
+            <field name="name">Ward</field>  <!-- Action name -->
+            <field name="res_model">res.country.ward</field>  <!-- Model associated with the action -->
+            <field name="view_id" ref="tree_view_res_country_ward"/>  <!-- View ID for the action -->
+            <field name="view_mode">tree</field>  <!-- View modes -->
+        </record>
+
+        <!-- Define action for 'res.country.township' model -->
+        <record id="action_res_country_township" model="ir.actions.act_window">
+            <field name="name">Township</field>  <!-- Action name -->
+            <field name="res_model">res.country.township</field>  <!-- Model associated with the action -->
+            <field name="view_id" ref="tree_view_res_country_township"/>  <!-- View ID for the action -->
+            <field name="view_mode">tree</field>  <!-- View modes -->
+        </record>
+
+        <!-- Define action for 'res.country.state' model -->
+        <record id="action_res_country_state" model="ir.actions.act_window">
+            <field name="name">State</field>  <!-- Action name -->
+            <field name="res_model">res.country.state</field>  <!-- Model associated with the action -->
+            <field name="view_id" ref="tree_view_res_country_state"/>  <!-- View ID for the action -->
+            <field name="view_mode">tree</field>  <!-- View modes -->
+        </record>
+
+        <!-- Define action for 'res.country' model -->
+        <record id="action_res_country" model="ir.actions.act_window">
+            <field name="name">Country</field>  <!-- Action name -->
+            <field name="res_model">res.country</field>  <!-- Model associated with the action -->
+            <field name="view_id" ref="tree_view_res_country"/>  <!-- View ID for the action -->
+            <field name="view_mode">tree</field>  <!-- View modes -->
+        </record>
+
+    </data>
+</odoo>

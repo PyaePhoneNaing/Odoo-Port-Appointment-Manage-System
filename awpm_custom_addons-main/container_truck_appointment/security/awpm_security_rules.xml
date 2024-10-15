@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="container_truck_appointment_export_rule_awpm_user" model="ir.rule">
+        <field name="name">Container Truck Appointment: Agent's Own Records</field>
+        <field name="model_id" ref="model_container_truck_appointment_export"/>
+        <field name="domain_force">[('agent_id.user_id', '=', user.id)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="groups" eval="[(4, ref('container_truck_appointment.group_awpm_user'))]"/>
+    </record>
+
+    <record id="container_truck_appointment_import_rule_awpm_user" model="ir.rule">
+        <field name="name">Container Truck Appointment: Agent's Own Records</field>
+        <field name="model_id" ref="model_container_truck_appointment_import"/>
+        <field name="domain_force">[('agent_id.user_id', '=', user.id)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="groups" eval="[(4, ref('container_truck_appointment.group_awpm_user'))]"/>
+    </record>
+
+    <record id="container_truck_appointment_agent_rule_awpm_user" model="ir.rule">
+        <field name="name">Container Truck Appointment: Agent's Own Records</field>
+        <field name="model_id" ref="model_container_truck_appointment_agent"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="groups" eval="[(4, ref('container_truck_appointment.group_awpm_user'))]"/>
+    </record>
+
+    <record id="container_truck_appointment_export_rule_awpm_manager" model="ir.rule">
+        <field name="name">Container Truck Appointment: Manager Full Access</field>
+        <field name="model_id" ref="model_container_truck_appointment_export"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="groups" eval="[(4, ref('container_truck_appointment.group_awpm_manager'))]"/>
+    </record>
+
+    <record id="container_truck_appointment_import_rule_awpm_manager" model="ir.rule">
+        <field name="name">Container Truck Appointment: Manager Full Access</field>
+        <field name="model_id" ref="model_container_truck_appointment_import"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="groups" eval="[(4, ref('container_truck_appointment.group_awpm_manager'))]"/>
+    </record>
+
+    <record id="container_truck_appointment_agent_rule_awpm_manager" model="ir.rule">
+        <field name="name">Container Truck Appointment: Manager Full Access</field>
+        <field name="model_id" ref="model_container_truck_appointment_agent"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="groups" eval="[(4, ref('container_truck_appointment.group_awpm_manager'))]"/>
+    </record>
+
+    <record id="container_truck_appointment_export_shipping_line_rule" model="ir.rule">
+        <field name="name">Container Truck Appointment Export: Shipping Line Rule</field>
+        <field name="model_id" ref="model_container_truck_appointment_export"/>
+        <field name="domain_force">[('vessel_id.shipping_line_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('container_truck_appointment.group_awpm_shipping'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="container_truck_appointment_import_shipping_line_rule" model="ir.rule">
+        <field name="name">Container Truck Appointment Import: Shipping Line Rule</field>
+        <field name="model_id" ref="model_container_truck_appointment_import"/>
+        <field name="domain_force">[('vessel_id.shipping_line_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('container_truck_appointment.group_awpm_shipping'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+     <record id="report_url_rule_agent" model="ir.rule">
+        <field name="name">Report URL: Agent Export Records</field>
+        <field name="model_id" ref="report_url.model_report_url"/>
+        <field name="domain_force">[('category_ids', 'in', ['Agent Export', 'Agent Import'])]</field>
+        <field name="groups" eval="[(4, ref('container_truck_appointment.group_awpm_user'))]"/>
+    </record>
+
+    <record id="report_url_rule_manager" model="ir.rule">
+        <field name="name">Report URL: Agent Export Records</field>
+        <field name="model_id" ref="report_url.model_report_url"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('container_truck_appointment.group_awpm_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+
+</odoo>

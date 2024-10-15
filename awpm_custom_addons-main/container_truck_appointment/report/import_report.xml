@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Template for Container Truck Appointment Import -->
+        <template id="container_truck_appointment_import_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="import_report_template"/>
+                </t>
+            </t>
+        </template>
+
+        <!-- Template for Import Report -->
+        <template id="import_report_template">
+            <main>
+                <div class="container" style="display: flex; justify-content: center;">
+                    <!-- Left Column -->
+                    <div class="column" style="flex: 1;"></div>
+
+             <div class="column" style="flex: 35% 0 50%; margin: 0 auto;">
+                <t t-foreach="docs" t-as="o">
+                    <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+                         t-att-data-oe-lang="o and o.env.context.get('lang')">
+                        <div class="row col-12">
+                            <div class="col-6">
+                                <!-- Multicompany -->
+                                <t t-if="not company">
+                                    <t t-if="company_id">
+                                        <t t-set="company" t-value="company_id"/>
+                                    </t>
+                                    <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                                        <t t-set="company" t-value="o.company_id.sudo()"/>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-set="company" t-value="res_company"/>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                        <br/>
+                        <!-- Import Report Content -->
+                        <div class="container">
+                            <div style="text-align:center;">
+                            <t t-if="o.qr_code">
+                                <img t-att-src="'data:image/png;base64,' + o.qr_code.decode('ascii')"
+                                     style="max-height: 160px;"/>
+                            </t>
+                            <t t-if="o.name">
+                                <p style="width: 100%;">
+                                    <span t-esc="o.name" style="font-size: 20px; font-weight: bold;"/>
+                                </p>
+                            </t>
+                            </div>
+                            <br></br>
+                            <div>
+                                <h5 style="text-align:center; font-size: 18px; font-weight: bold;">Container Truck Appointment</h5>
+                            <h5 style="text-align:center; font-size: 15px;"> (Import) Slip </h5>
+                                <h5 style="font-weight:bold; text-decoration: underline; font-size: 18px; margin-left:1%">Container Information</h5>
+                                <div style="margin-bottom: 10px; margin-left: 1%">
+                                    <div style="margin-bottom: 10px;">
+                                        <strong style="display: inline-block; width: 150px;">Vessel</strong>
+                                        <span style="margin-left:8px;">:</span>
+                                        <span t-field="o.vessel_id" style="display: inline-block; margin-left: 8px;"/>
+                                    </div>
+                                    <div style="margin-bottom: 10px;">
+                                        <strong style="display: inline-block; width: 150px;">Voyage</strong>
+                                        <span style="margin-left:8px;">:</span>
+                                        <span t-field="o.voyage_id"
+                                              style="display: inline-block; margin-left: 8px;"/>
+                                    </div>
+                                    <div style="margin-bottom: 10px;">
+                                        <strong style="display: inline-block; width: 150px;">Bill of Landing</strong>
+                                        <span style="margin-left:8px;">:</span>
+                                        <span t-field="o.bill_of_landing"
+                                              style="display: inline-block; margin-left: 8px;"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 style="font-weight:bold; text-decoration: underline; font-size: 18px; margin-left:1%">General Information</h5>
+                                <div style="margin-bottom: 10px; margin-left: 1%">
+                                    <div style="margin-bottom: 10px;">
+                                        <strong style="display: inline-block; width: 150px;">Consignee</strong>
+                                        <span style="margin-left:8px;">:</span>
+                                        <span t-field="o.shipper_id" style="display: inline-block; margin-left: 8px;"/>
+                                    </div>
+                                    <div style="margin-bottom: 10px;">
+                                        <strong style="display: inline-block; width: 150px;">Appointment Date</strong>
+                                        <span style="margin-left:8px;">:</span>
+                                        <span t-field="o.appointment_date"
+                                              style="display: inline-block; margin-left: 8px;"/>
+                                    </div>
+                                    <div style="margin-bottom: 10px;">
+                                        <strong style="display: inline-block; width: 150px;">Time</strong>
+                                        <span style="margin-left:8px;">:</span>
+                                        <span t-field="o.time"
+                                              style="display: inline-block; margin-left: 8px;"/>
+                                    </div>
+                                    <div style="margin-bottom: 10px;">
+                                        <strong style="display: inline-block; width: 150px;">Agent</strong>
+                                        <span style="margin-left:8px;">:</span>
+                                        <span t-field="o.agent_id"
+                                              style="display: inline-block; margin-left: 8px;"/>
+                                    </div>
+                                </div>
+                            </div>
+                                    <!-- One2many Field: Container Lines -->
+                                    <div style="display: flex; justify-content: center;">
+                                        <div>
+                                        <table class="table table-sm table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 50%; text-align: center; font-size: 15px; background-color: #f2f2f2; padding: 10px; border: 2px solid #ccc;">Container ID</th>
+                                                    <th style="width: 50%; text-align: center; font-size: 15px; background-color: #f2f2f2; padding: 10px; border: 2px solid #ccc;">State</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="o.import_line_ids" t-as="line">
+                                                    <tr>
+                                                        <td style="text-align: center; font-size: 14px; border: 1px solid #ccc; padding:5px;">
+                                                            <span t-field="line.container_id"/>
+                                                        </td>
+                                                        <td style="text-align: center; font-size: 14px; border: 1px solid #ccc; padding:5px;">
+                                                            <span t-field="line.state"/>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </div>
+                                    <t t-if="company">
+                                        <p style="width: 100%; text-align:center;">
+                                            <span t-esc="company.name" style="font-size: 14px;"/><br></br>
+                                            <span t-esc="company.website" style="font-size: 14px;"/>
+                                        </p>
+                                    </t>
+                                </div>
+                            </div>
+                         </t>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="column" style="flex: 1;"></div>
+                </div>
+            </main>
+        </template>
+
+        <template id="container_truck_appointment_import_report">
+            <main>
+                <t t-foreach="docs" t-as="o">
+                    <div class="article" t-att-data-oe-model="o and o.import_id._name" t-att-data-oe-id="o and o.import_id.id"
+                         t-att-data-oe-lang="o and o.import_id.env.context.get('lang')">
+                        <div class="row col-12">
+                            <div class="col-6">
+                                <!-- Multicompany -->
+                                <t t-if="not company">
+                                    <t t-if="company_id">
+                                        <t t-set="company" t-value="company_id"/>
+                                    </t>
+                                    <t t-elif="o and 'company_id' in o and o.import_id.company_id.sudo()">
+                                        <t t-set="company" t-value="o.import_id.company_id.sudo()"/>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-set="company" t-value="res_company"/>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                        <br/>
+                        <!-- Export Report Content -->
+                        <div class="container">
+                            <div style="text-align: center;">
+                                        <t t-if="o.import_id.qr_code">
+                                            <img t-att-src="'data:image/png;base64,' + o.import_id.qr_code.decode('ascii')" style="max-height: 160px;"/>
+                                        </t>
+                                        <t t-if="o.import_id.name">
+                                            <p style="width: 100%;">
+                                                <span t-esc="o.import_id.name" style="font-size: 20px; font-weight: bold;"/>
+                                            </p>
+                                        </t>
+                                </div>
+                            <br></br>
+                            <div>
+                            <h5 style="text-align:center; font-size: 18px; font-weight: bold;">Container Truck Appointment</h5>
+                            <h5 style="text-align: center; font-size: 15px;"> (Import) Slip </h5>
+                                <h5 style="font-weight:bold; text-decoration: underline;font-size: 18px; margin-left:1%">Container Information</h5>
+                                <div style="margin-bottom: 10px; margin-left: 1%">
+                                    <div style="margin-bottom: 10px;">
+                                        <strong style="display: inline-block; width: 150px;">Vessel</strong>
+                                        <span style="margin-left:8px;">:</span>
+                                        <span t-field="o.import_id.vessel_id" style="display: inline-block; margin-left: 8px;"/>
+                                    </div>
+                                    <div style="margin-bottom: 10px;">
+                                        <strong style="display: inline-block; width: 150px;">Voyage</strong>
+                                        <span style="margin-left:8px;">:</span>
+                                        <span t-field="o.import_id.voyage_id"
+                                              style="display: inline-block; margin-left: 8px;"/>
+                                    </div>
+                                    <div style="margin-bottom: 10px;">
+                                        <strong style="display: inline-block; width: 150px;">Bill of Landing</strong>
+                                        <span style="margin-left:8px;">:</span>
+                                        <span t-field="o.import_id.bill_of_landing"
+                                              style="display: inline-block; margin-left: 8px;"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 style="font-weight:bold; text-decoration: underline;font-size: 18px; margin-left:1%">General Information</h5>
+                                <div style="margin-bottom: 10px; margin-left: 1%">
+                                    <div style="margin-bottom: 10px;">
+                                        <strong style="display: inline-block; width: 150px;">Consignee</strong>
+                                        <span style="margin-left:8px;">:</span>
+                                        <span t-field="o.import_id.shipper_id" style="display: inline-block; margin-left: 8px;"/>
+                                    </div>
+                                    <div style="margin-bottom: 10px;">
+                                        <strong style="display: inline-block; width: 150px;">Appointment Date</strong>
+                                        <span style="margin-left:8px;">:</span>
+                                        <span t-field="o.import_id.appointment_date"
+                                              style="display: inline-block; margin-left: 8px;"/>
+                                    </div>
+                                    <div style="margin-bottom: 10px;">
+                                        <strong style="display: inline-block; width: 150px;">Time</strong>
+                                        <span style="margin-left:8px;">:</span>
+                                        <span t-field="o.import_id.time"
+                                              style="display: inline-block; margin-left: 8px;"/>
+                                    </div>
+                                    <div style="margin-bottom: 10px;">
+                                        <strong style="display: inline-block; width: 150px;">Agent</strong>
+                                        <span style="margin-left:8px;">:</span>
+                                        <span t-field="o.import_id.agent_id"
+                                              style="display: inline-block; margin-left: 8px;"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- One2many Field: Container Lines -->
+                           <div style="display: flex; justify-content: center;">
+                            <div>
+                                <table class="table table-sm table-bordered">
+                                    <thead>
+
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="o" t-as="line">
+                                                <tr>
+                                            <th style="width: 100%; background-color: #f2f2f2; padding: 10px; border: 2px solid #ccc;">
+                                                <span t-field="line.container_id" style="font-size: 19px; font-weight: bold;"/>
+                                            </th>
+                                        </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                           </div>
+                            <t t-if="company">
+                                            <p style="width: 100%; text-align: center;">
+                                                <span t-esc="company.name" style="font-size: 14px;"/>
+                                                <span t-esc="company.website" style="font-size: 14px;"/>
+                                            </p>
+                                        </t>
+                        </div>
+                    </div>
+                </t>
+
+            </main>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <t t-name="container_truck_appointment.HomeMenu" t-inherit="web_enterprise.HomeMenu" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div/div" position="after">
+            <div class="announcement">
+                <t t-if="state.announcements.length > 0">
+                    <div class="announcement-title">
+                        <t t-foreach="state.announcements" t-as="announcement" t-key="announcement.id">
+                            <div class="card text-white bg-warning mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title alert alert-danger">
+                                        <t t-out="announcement.name" />
+                                    </h5>
+                                    <p class="card-text text-truncate-2">
+                                        <t t-out="announcement.message" />
+                                    </p>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </div>
+        </xpath>
+    </t>
+</templates>

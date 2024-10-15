@@ -1,0 +1,9 @@
+.announcement {
+    background-color: #D7B4B4; /* Adjust background color */
+    border: 2px solid white;
+    padding: 20px;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: white; /* Adjust text color */
+}

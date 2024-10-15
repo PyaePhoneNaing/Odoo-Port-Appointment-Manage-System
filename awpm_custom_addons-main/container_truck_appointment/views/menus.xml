@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem name="Container Truck"
+              id="menu_container_truck"
+              sequence="20"
+              web_icon="container_truck_appointment,static/img/icon.png"
+              groups="group_awpm_shipping"/>
+
+    <!-- Define top-level menu for configuration -->
+    <menuitem name="Configuration" id="menu_container_truck_configuration"
+              parent="container_truck_appointment.menu_container_truck"
+              sequence="20" groups="group_awpm_manager"/>
+
+    <!-- Agent Menu -->
+    <menuitem name="Agents" id="agent_menu"
+              sequence="4"
+              parent="container_truck_appointment.menu_container_truck"
+              action="container_truck_appointment.agent_act_window"
+              groups="group_awpm_user"
+    />
+
+    <!-- Shipping Line Menu -->
+    <menuitem name="Shipping Line" id="shipping_line_menu"
+              sequence="5"
+              parent="container_truck_appointment.menu_container_truck"
+              action="container_truck_appointment.shipping_line_act_window"
+              groups="group_awpm_manager"/>
+
+    <!-- Define parent menu for Address -->
+    <menuitem id="menu_parent_address" parent="container_truck_appointment.menu_container_truck_configuration"
+              name="Address" sequence="3" groups="group_awpm_manager"/>
+
+    <!-- Define menu for Ward -->
+    <menuitem id="menu_address_ward" parent="container_truck_appointment.menu_parent_address" name="Ward"
+              sequence="2" action="action_res_country_ward" groups="group_awpm_manager"/>
+
+    <!-- Define menu for Township -->
+    <menuitem id="menu_address_township" parent="container_truck_appointment.menu_parent_address" name="Township"
+              sequence="3" action="action_res_country_township" groups="group_awpm_manager"/>
+
+    <!-- Define menu for State -->
+    <menuitem id="menu_address_state" parent="container_truck_appointment.menu_parent_address" name="State"
+              sequence="4" action="action_res_country_state" groups="group_awpm_manager"/>
+
+    <!-- Define menu for Country -->
+    <menuitem id="menu_address_country" parent="container_truck_appointment.menu_parent_address" name="Country"
+              sequence="5" action="action_res_country" groups="group_awpm_manager"/>
+
+    <menuitem id="menu_container_truck_appointment_export"
+              name="Export"
+              action="container_truck_appointment.container_truck_appointment_export_action"
+              parent="container_truck_appointment.menu_container_truck"
+              sequence="2"/>
+    <menuitem id="menu_container_truck_appointment_import"
+              name="Import"
+              action="container_truck_appointment.container_truck_appointment_import_action"
+              parent="container_truck_appointment.menu_container_truck"
+              sequence="3"/>
+
+    <!-- Define parent menu for NRC -->
+    <menuitem id="menu_parent_nrc" parent="container_truck_appointment.menu_container_truck_configuration"
+              name="NRC" sequence="2" groups="group_awpm_manager"/>
+
+    <!-- Define menu for NRC State -->
+    <menuitem id="menu_nrc_state" parent="menu_parent_nrc" name="State Number"
+              sequence="1" action="action_nrc_state" groups="group_awpm_manager"/>
+
+    <!-- Define menu for NRC District -->
+    <menuitem id="menu_nrc_district" parent="menu_parent_nrc" name="District"
+              sequence="2" action="action_nrc_district" groups="group_awpm_manager"/>
+
+    <!-- Define menu for NRC Type -->
+    <menuitem id="menu_nrc_type" parent="menu_parent_nrc" name="Type" sequence="3"
+              action="action_nrc_type" groups="group_awpm_manager"/>
+
+    <menuitem id="menu_parent_export" parent="container_truck_appointment.menu_container_truck_configuration"
+              name="Export/Import" sequence="3" groups="group_awpm_manager"/>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="menu_shift" name="Shift" parent="container_truck_appointment.menu_parent_export"
+              action="container_truck_appointment.shift_action" sequence="4" groups="group_awpm_manager"/>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="menu_vessel" name="Vessel" parent="container_truck_appointment.menu_parent_export"
+              action="container_truck_appointment.vessel_action" sequence="1" groups="group_awpm_manager"/>
+
+    <menuitem id="booking_reference" parent="menu_parent_export" name="Booking Reference" sequence="5"
+              action="booking_reference_action" groups="group_awpm_manager"/>
+
+    <menuitem id="bill_of_landing" parent="menu_parent_export" name="Bill of Landing" sequence="6"
+              action="bill_of_landing_action" groups="group_awpm_manager"/>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="menu_voyage" name="Voyage" parent="container_truck_appointment.menu_parent_export"
+              action="container_truck_appointment.voyage_action" sequence="2" groups="group_awpm_manager"/>
+
+    <menuitem id="menu_container" name="Container" parent="container_truck_appointment.menu_parent_export"
+              action="container_truck_appointment.container_action" sequence="3" groups="group_awpm_manager"/>
+
+    <menuitem id="menu_container_dashboard" name="Dashboard" parent="container_truck_appointment.menu_container_truck"
+              action="action_container_dashboard" sequence="-1" groups="group_awpm_manager"/>
+
+    <menuitem id="menu_parent_announcement" parent="container_truck_appointment.menu_container_truck"
+              name="Announcement" sequence="5" groups="group_awpm_manager"/>
+
+    <menuitem id="menu_announcement" name="Announcement" parent="container_truck_appointment.menu_parent_announcement"
+              action="container_truck_appointment.announcement_action" sequence="1" groups="group_awpm_manager"/>
+
+</odoo>

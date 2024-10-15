@@ -1,0 +1,70 @@
+<odoo>
+    <data>
+        <!-- Views -->
+        <!-- Define view for 'nrc.type' model -->
+        <record id="tree_view_nrc_type" model="ir.ui.view">
+            <field name="name">Type</field>  <!-- View name -->
+            <field name="model">nrc.type</field>  <!-- Model associated with the view -->
+            <field name="arch" type="xml">
+                <!-- Tree view definition -->
+                <tree editable="top">
+                    <field name="name"/>  <!-- Display name field -->
+                    <field name="eng_name"/>  <!-- Display English name field -->
+                </tree>
+            </field>
+        </record>
+
+        <!-- Define view for 'nrc.state' model -->
+        <record id="tree_view_nrc_state" model="ir.ui.view">
+            <field name="name">NRC State No</field>  <!-- View name -->
+            <field name="model">nrc.state</field>  <!-- Model associated with the view -->
+            <field name="arch" type="xml">
+                <!-- Tree view definition -->
+                <tree editable="top">
+                    <field name="name"/>  <!-- Display name field -->
+                    <field name="eng_name"/>  <!-- Display English name field -->
+                    <field name="description"/>  <!-- Display description field -->
+                </tree>
+            </field>
+        </record>
+
+        <!-- Define view for 'nrc.district' model -->
+        <record id="tree_view_nrc_district" model="ir.ui.view">
+            <field name="name">NRC District</field>  <!-- View name -->
+            <field name="model">nrc.district</field>  <!-- Model associated with the view -->
+            <field name="arch" type="xml">
+                <!-- Tree view definition -->
+                <tree editable="top">
+                    <field name="name"/>  <!-- Display name field -->
+                    <field name="eng_name"/>  <!-- Display English name field -->
+                    <field name="nrc_state"/>  <!-- Display associated state field -->
+                </tree>
+            </field>
+        </record>
+
+        <!-- Actions -->
+        <!-- Define action for 'nrc.type' model -->
+        <record id="action_nrc_type" model="ir.actions.act_window">
+            <field name="name">Type</field>  <!-- Action name -->
+            <field name="res_model">nrc.type</field>  <!-- Model associated with the action -->
+            <field name="view_id" ref="tree_view_nrc_type"/>  <!-- View ID for the action -->
+            <field name="view_mode">tree,form</field>  <!-- View modes -->
+        </record>
+
+        <!-- Define action for 'nrc.state' model -->
+        <record id="action_nrc_state" model="ir.actions.act_window">
+            <field name="name">NRC State No</field>  <!-- Action name -->
+            <field name="res_model">nrc.state</field>  <!-- Model associated with the action -->
+            <field name="view_id" ref="tree_view_nrc_state"/>  <!-- View ID for the action -->
+            <field name="view_mode">tree,form</field>  <!-- View modes -->
+        </record>
+
+        <!-- Define action for 'nrc.district' model -->
+        <record id="action_nrc_district" model="ir.actions.act_window">
+            <field name="name">NRC District</field>  <!-- Action name -->
+            <field name="res_model">nrc.district</field>  <!-- Model associated with the action -->
+            <field name="view_id" ref="tree_view_nrc_district"/>  <!-- View ID for the action -->
+            <field name="view_mode">tree,form</field>  <!-- View modes -->
+        </record>
+    </data>
+</odoo>
